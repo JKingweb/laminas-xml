@@ -34,7 +34,7 @@ class Security
      * @throws  Exception\RuntimeException
      * @return  SimpleXMLElement|DomDocument|boolean
      */
-    private static function scanString($xml, DOMDocument $dom = null, $libXmlConstants, callable $callback)
+    private static function scanString($xml, ?DOMDocument $dom = null, $libXmlConstants, callable $callback)
     {
         // If running with PHP-FPM we perform an heuristic scan
         // We cannot use libxml_disable_entity_loader because of this bug
@@ -117,7 +117,7 @@ class Security
      * @throws  Exception\RuntimeException
      * @return  SimpleXMLElement|DomDocument|boolean
      */
-    public static function scan($xml, DOMDocument $dom = null, $libXmlConstants = 0)
+    public static function scan($xml, ?DOMDocument $dom = null, $libXmlConstants = 0)
     {
         $callback = function ($xml, $dom, $constants) {
             return $dom->loadXml($xml, $constants);
@@ -134,7 +134,7 @@ class Security
      * @throws  Exception\RuntimeException
      * @return  SimpleXMLElement|DomDocument|boolean
      */
-    public static function scanHtml($html, DOMDocument $dom = null, $libXmlConstants = 0)
+    public static function scanHtml($html, ?DOMDocument $dom = null, $libXmlConstants = 0)
     {
         $callback = function ($html, $dom, $constants) {
             return $dom->loadHtml($html, $constants);
@@ -150,7 +150,7 @@ class Security
      * @throws Exception\InvalidArgumentException
      * @return SimpleXMLElement|DomDocument
      */
-    public static function scanFile($file, DOMDocument $dom = null)
+    public static function scanFile($file, ?DOMDocument $dom = null)
     {
         if (! file_exists($file)) {
             throw new Exception\InvalidArgumentException(
