@@ -34,7 +34,7 @@ class Security
      * @throws  Exception\RuntimeException
      * @return  SimpleXMLElement|DomDocument|boolean
      */
-    private static function scanString($xml, ?DOMDocument $dom = null, $libXmlConstants, callable $callback)
+    private static function scanString($xml, ?DOMDocument $dom, $libXmlConstants, callable $callback)
     {
         // If running with PHP-FPM we perform an heuristic scan
         // We cannot use libxml_disable_entity_loader because of this bug
